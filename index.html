@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Local Community Event Portal — Discover, register, and connect at events near you. Find music, sports, workshops, food festivals and more." />
+  <meta name="keywords" content="community events, local events, event registration, Chennai, Bangalore, Hyderabad, Mumbai, Delhi" />
+  <meta name="author" content="Local Community Portal" />
+  <meta property="og:title" content="Local Community Event Portal" />
+  <meta property="og:description" content="Discover exciting events in your city and register in seconds." />
+  <title>Local Community Event Portal — Connect. Celebrate. Together.</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <div class="brand-icon" aria-hidden="true">🏛️</div>
+        <div class="brand-text">
+          <span class="brand-name">CommunityHub</span>
+          <span class="brand-tagline">Events Portal</span>
+        </div>
+      </div>
+
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="#home" class="nav-link active" aria-label="Go to Home">Home</a></li>
+        <li><a href="#events" class="nav-link" aria-label="Browse events">Events</a></li>
+        <li><a href="#stats" class="nav-link" aria-label="View statistics">Stats</a></li>
+        <li><a href="#about" class="nav-link" aria-label="About us">About</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Registration Counter Badge -->
+        <div class="reg-counter-badge" id="regCounterBadge" aria-live="polite" title="Total registrations">
+          <span class="counter-icon">📋</span>
+          <span class="counter-num" id="navRegCount">0</span>
+        </div>
+
+        <!-- Favorites Badge -->
+        <div class="fav-badge" id="favBadge" aria-live="polite" title="Saved events">
+          <span class="fav-icon">♥</span>
+          <span class="fav-num" id="navFavCount">0</span>
+        </div>
+
+        <!-- Dark/Light Mode Toggle -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode" title="Toggle theme">
+          <span class="theme-icon" id="themeIcon">☀️</span>
+        </button>
+
+        <!-- Hamburger Menu -->
+        <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="navLinks">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== HERO SECTION ========== -->
+  <section class="hero" id="home" aria-label="Hero banner">
+    <div class="hero-bg-orbs" aria-hidden="true">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge" aria-label="New events available">🎉 New Events Every Week</div>
+      <h1 class="hero-title">
+        Connect With Your<br />
+        <span class="hero-gradient-text">Community</span>
+      </h1>
+      <p class="hero-subtitle">
+        Discover amazing local events, meet new people, and be part of something bigger.
+        From music festivals to tech summits — there's always something happening near you.
+      </p>
+      <div class="hero-actions">
+        <a href="#events" class="btn btn-primary" id="heroExploreBtn" aria-label="Explore upcoming events">
+          <span>Explore Events</span>
+          <span class="btn-arrow">→</span>
+        </a>
+        <button class="btn btn-secondary" id="heroRegisterBtn" aria-label="Register for an event">
+          <span>Register Now</span>
+        </button>
+      </div>
+      <div class="hero-stats" aria-label="Portal statistics">
+        <div class="hero-stat">
+          <span class="hero-stat-num" id="heroEventCount">0</span>
+          <span class="hero-stat-label">Events</span>
+        </div>
+        <div class="hero-stat-divider" aria-hidden="true"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-num" id="heroCityCount">0</span>
+          <span class="hero-stat-label">Cities</span>
+        </div>
+        <div class="hero-stat-divider" aria-hidden="true"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-num" id="heroRegCount">0</span>
+          <span class="hero-stat-label">Registered</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <span class="scroll-text">Scroll to explore</span>
+      <div class="scroll-arrow">↓</div>
+    </div>
+  </section>
+
+  <!-- ========== STATS SECTION ========== -->
+  <section class="stats-section" id="stats" aria-label="Community statistics">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card" aria-label="Total events statistic">
+          <div class="stat-icon" aria-hidden="true">🎪</div>
+          <div class="stat-number" id="statTotalEvents" data-target="12">0</div>
+          <div class="stat-label">Total Events</div>
+        </div>
+        <div class="stat-card" aria-label="Cities covered statistic">
+          <div class="stat-icon" aria-hidden="true">🏙️</div>
+          <div class="stat-number" id="statCities" data-target="5">0</div>
+          <div class="stat-label">Cities Covered</div>
+        </div>
+        <div class="stat-card" aria-label="Event categories statistic">
+          <div class="stat-icon" aria-hidden="true">📂</div>
+          <div class="stat-number" id="statCategories" data-target="6">0</div>
+          <div class="stat-label">Categories</div>
+        </div>
+        <div class="stat-card" aria-label="Happy attendees statistic">
+          <div class="stat-icon" aria-hidden="true">😊</div>
+          <div class="stat-number" id="statAttendees" data-target="3275">0</div>
+          <div class="stat-label">Happy Attendees</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== EVENTS SECTION ========== -->
+  <section class="events-section" id="events" aria-label="Upcoming events">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">📅 Upcoming Events</div>
+        <h2 class="section-title">Discover What's Happening</h2>
+        <p class="section-subtitle">Browse, filter, and register for events happening in your city</p>
+      </div>
+
+      <!-- ======== SEARCH & FILTER CONTROLS ======== -->
+      <div class="controls-panel" role="search" aria-label="Event search and filter controls">
+        <div class="search-bar-wrapper">
+          <span class="search-icon" aria-hidden="true">🔍</span>
+          <input
+            type="search"
+            id="searchInput"
+            class="search-input"
+            placeholder="Search events, organizers, locations..."
+            aria-label="Search events"
+            autocomplete="off"
+          />
+          <button class="search-clear" id="searchClear" aria-label="Clear search" style="display:none;">✕</button>
+        </div>
+
+        <div class="filter-group">
+          <label for="categoryFilter" class="visually-hidden">Filter by category</label>
+          <select id="categoryFilter" class="filter-select" aria-label="Filter by category">
+            <option value="all">All Categories</option>
+            <option value="Music">🎵 Music</option>
+            <option value="Technology">💻 Technology</option>
+            <option value="Sports">⚽ Sports</option>
+            <option value="Food">🍜 Food</option>
+            <option value="Workshop">🎨 Workshop</option>
+            <option value="Community Service">🤝 Community Service</option>
+          </select>
+
+          <label for="locationFilter" class="visually-hidden">Filter by location</label>
+          <select id="locationFilter" class="filter-select" aria-label="Filter by location">
+            <option value="all">All Cities</option>
+            <option value="Chennai">📍 Chennai</option>
+            <option value="Bangalore">📍 Bangalore</option>
+            <option value="Hyderabad">📍 Hyderabad</option>
+            <option value="Mumbai">📍 Mumbai</option>
+            <option value="Delhi">📍 Delhi</option>
+          </select>
+
+          <label for="sortFilter" class="visually-hidden">Sort events</label>
+          <select id="sortFilter" class="filter-select" aria-label="Sort events">
+            <option value="date-asc">📅 Date (Soonest)</option>
+            <option value="date-desc">📅 Date (Latest)</option>
+            <option value="seats-asc">💺 Seats (Fewest)</option>
+            <option value="seats-desc">💺 Seats (Most)</option>
+            <option value="name-asc">🔤 Name (A–Z)</option>
+          </select>
+        </div>
+
+        <div class="view-toggle" role="group" aria-label="View toggle">
+          <button class="view-btn active" id="gridViewBtn" aria-label="Grid view" aria-pressed="true" title="Grid view">⊞</button>
+          <button class="view-btn" id="listViewBtn" aria-label="List view" aria-pressed="false" title="List view">☰</button>
+        </div>
+
+        <button class="btn-reset-filters" id="resetFilters" aria-label="Reset all filters">Reset Filters</button>
+      </div>
+
+      <!-- Active filter tags -->
+      <div class="active-filters" id="activeFilters" aria-live="polite" aria-label="Active filters"></div>
+
+      <!-- Results count -->
+      <div class="results-info" id="resultsInfo" aria-live="polite" aria-label="Search results count"></div>
+
+      <!-- ======== LOADING SKELETONS ======== -->
+      <div class="events-grid skeleton-grid" id="skeletonGrid" aria-label="Loading events" aria-busy="true">
+        <div class="skeleton-card" aria-hidden="true">
+          <div class="skeleton-img"></div>
+          <div class="skeleton-body">
+            <div class="skeleton-line skeleton-title"></div>
+            <div class="skeleton-line skeleton-sm"></div>
+            <div class="skeleton-line skeleton-md"></div>
+            <div class="skeleton-line skeleton-sm"></div>
+            <div class="skeleton-line skeleton-btn"></div>
+          </div>
+        </div>
+        <div class="skeleton-card" aria-hidden="true">
+          <div class="skeleton-img"></div>
+          <div class="skeleton-body">
+            <div class="skeleton-line skeleton-title"></div>
+            <div class="skeleton-line skeleton-sm"></div>
+            <div class="skeleton-line skeleton-md"></div>
+            <div class="skeleton-line skeleton-sm"></div>
+            <div class="skeleton-line skeleton-btn"></div>
+          </div>
+        </div>
+        <div class="skeleton-card" aria-hidden="true">
+          <div class="skeleton-img"></div>
+          <div class="skeleton-body">
+            <div class="skeleton-line skeleton-title"></div>
+            <div class="skeleton-line skeleton-sm"></div>
+            <div class="skeleton-line skeleton-md"></div>
+            <div class="skeleton-line skeleton-sm"></div>
+            <div class="skeleton-line skeleton-btn"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======== EVENTS GRID ======== -->
+      <div class="events-grid" id="eventsGrid" role="list" aria-label="Events list" aria-live="polite"></div>
+
+      <!-- ======== EMPTY STATE ======== -->
+      <div class="empty-state" id="emptyState" style="display:none;" role="alert" aria-label="No events found">
+        <div class="empty-illustration" aria-hidden="true">🔍</div>
+        <h3 class="empty-title">No Events Found</h3>
+        <p class="empty-subtitle">Try adjusting your filters or search terms to discover more events.</p>
+        <button class="btn btn-primary" id="emptyResetBtn" aria-label="Clear all filters">Clear Filters</button>
+      </div>
+
+      <!-- ======== PAGINATION ======== -->
+      <div class="pagination" id="pagination" role="navigation" aria-label="Event pagination"></div>
+    </div>
+  </section>
+
+  <!-- ========== FRAMEWORK INFO SECTION ========== -->
+  <section class="framework-section" id="about" aria-label="About modern frameworks">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">⚡ Modern Web Dev</div>
+        <h2 class="section-title">jQuery vs Modern Frameworks</h2>
+        <p class="section-subtitle">Understanding the evolution of frontend development</p>
+      </div>
+      <div class="framework-grid">
+        <div class="framework-card framework-jquery">
+          <div class="framework-header">
+            <span class="framework-logo">$</span>
+            <h3>jQuery</h3>
+            <span class="framework-tag tag-classic">Classic</span>
+          </div>
+          <ul class="framework-pros" aria-label="jQuery benefits">
+            <li>✅ Simple DOM manipulation</li>
+            <li>✅ Cross-browser compatibility</li>
+            <li>✅ Low learning curve</li>
+            <li>✅ Huge plugin ecosystem</li>
+            <li>✅ Great for small projects</li>
+          </ul>
+          <div class="framework-code" aria-label="jQuery code example">
+            <pre><code>// jQuery example
+$('#btn').click(function() {
+  $('#modal').fadeIn(300);
+  $('.card').slideToggle();
+});</code></pre>
+          </div>
+        </div>
+
+        <div class="framework-card framework-react">
+          <div class="framework-header">
+            <span class="framework-logo">⚛</span>
+            <h3>React / Vue</h3>
+            <span class="framework-tag tag-modern">Modern</span>
+          </div>
+          <ul class="framework-pros" aria-label="React and Vue benefits">
+            <li>🚀 Component reusability</li>
+            <li>🚀 Virtual DOM (faster re-renders)</li>
+            <li>🚀 Centralized state management</li>
+            <li>🚀 Reactive data binding</li>
+            <li>🚀 Scales to large applications</li>
+          </ul>
+          <div class="framework-code" aria-label="React code example">
+            <pre><code>// React component example
+function EventCard({ event }) {
+  const [liked, setLiked] = useState(false);
+  return &lt;div onClick={() =&gt; setLiked(!liked)}&gt;
+    {event.title}
+  &lt;/div&gt;;
+}</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="framework-note" role="note">
+        <span class="note-icon" aria-hidden="true">💡</span>
+        <p>This portal uses <strong>jQuery</strong> for DOM animations alongside <strong>Vanilla JS (ES6+)</strong> for core logic —
+           demonstrating the best of both worlds. For production-scale apps, React or Vue would offer better state management and performance through the Virtual DOM.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">🏛️ CommunityHub</div>
+          <p class="footer-desc">Connecting communities through unforgettable local events. Your city, your events, your community.</p>
+          <div class="footer-socials" aria-label="Social media links">
+            <a href="#" class="social-link" aria-label="Facebook">📘</a>
+            <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+            <a href="#" class="social-link" aria-label="Instagram">📸</a>
+            <a href="#" class="social-link" aria-label="LinkedIn">💼</a>
+          </div>
+        </div>
+        <div class="footer-links-col">
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links" role="list">
+            <li><a href="#home" class="footer-link">Home</a></li>
+            <li><a href="#events" class="footer-link">Events</a></li>
+            <li><a href="#stats" class="footer-link">Statistics</a></li>
+            <li><a href="#about" class="footer-link">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-col">
+          <h4 class="footer-heading">Categories</h4>
+          <ul class="footer-links" role="list">
+            <li><a href="#events" class="footer-link">🎵 Music</a></li>
+            <li><a href="#events" class="footer-link">💻 Technology</a></li>
+            <li><a href="#events" class="footer-link">⚽ Sports</a></li>
+            <li><a href="#events" class="footer-link">🍜 Food</a></li>
+            <li><a href="#events" class="footer-link">🎨 Workshop</a></li>
+            <li><a href="#events" class="footer-link">🤝 Community</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-col">
+          <h4 class="footer-heading">Cities</h4>
+          <ul class="footer-links" role="list">
+            <li><a href="#events" class="footer-link">📍 Chennai</a></li>
+            <li><a href="#events" class="footer-link">📍 Bangalore</a></li>
+            <li><a href="#events" class="footer-link">📍 Hyderabad</a></li>
+            <li><a href="#events" class="footer-link">📍 Mumbai</a></li>
+            <li><a href="#events" class="footer-link">📍 Delhi</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 CommunityHub Events Portal. Built with ❤️ using HTML, CSS &amp; JavaScript.</p>
+        <p class="footer-tech">Powered by Vanilla JS ES6+ &amp; jQuery</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== REGISTRATION MODAL ========== -->
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" style="display:none;">
+    <div class="modal" id="registrationModal">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="modal-icon" aria-hidden="true">📝</span>
+          <h2 class="modal-title" id="modalTitle">Register for Event</h2>
+        </div>
+        <button class="modal-close" id="modalClose" aria-label="Close registration modal">✕</button>
+      </div>
+
+      <div class="modal-event-info" id="modalEventInfo" aria-label="Event details"></div>
+
+      <form id="registrationForm" class="registration-form" novalidate aria-label="Event registration form">
+        <input type="hidden" id="selectedEventId" name="eventId" />
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="regName" class="form-label">Full Name <span class="required" aria-hidden="true">*</span></label>
+            <input
+              type="text"
+              id="regName"
+              name="name"
+              class="form-input"
+              placeholder="Enter your full name"
+              required
+              aria-required="true"
+              autocomplete="name"
+            />
+            <span class="form-error" id="nameError" role="alert"></span>
+          </div>
+          <div class="form-group">
+            <label for="regEmail" class="form-label">Email Address <span class="required" aria-hidden="true">*</span></label>
+            <input
+              type="email"
+              id="regEmail"
+              name="email"
+              class="form-input"
+              placeholder="your@email.com"
+              required
+              aria-required="true"
+              autocomplete="email"
+            />
+            <span class="form-error" id="emailError" role="alert"></span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="regPhone" class="form-label">Phone Number</label>
+            <input
+              type="tel"
+              id="regPhone"
+              name="phone"
+              class="form-input"
+              placeholder="+91 98765 43210"
+              autocomplete="tel"
+            />
+          </div>
+          <div class="form-group">
+            <label for="regTickets" class="form-label">Number of Tickets <span class="required" aria-hidden="true">*</span></label>
+            <input
+              type="number"
+              id="regTickets"
+              name="tickets"
+              class="form-input"
+              value="1"
+              min="1"
+              max="10"
+              required
+              aria-required="true"
+            />
+            <span class="form-error" id="ticketsError" role="alert"></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="regMessage" class="form-label">Special Requirements (Optional)</label>
+          <textarea
+            id="regMessage"
+            name="message"
+            class="form-textarea"
+            placeholder="Any dietary requirements, accessibility needs, or special requests..."
+            rows="3"
+          ></textarea>
+        </div>
+
+        <div class="form-check">
+          <input type="checkbox" id="agreeTerms" name="terms" required aria-required="true" />
+          <label for="agreeTerms" class="form-check-label">
+            I agree to the <a href="#" class="form-link">Terms & Conditions</a> and <a href="#" class="form-link">Privacy Policy</a>
+          </label>
+          <span class="form-error" id="termsError" role="alert"></span>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary" id="cancelRegBtn" aria-label="Cancel registration">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-submit" id="submitRegBtn" aria-label="Submit registration">
+            <span class="btn-text">Register Now</span>
+            <span class="btn-spinner" style="display:none;" aria-hidden="true">⟳</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========== TOAST NOTIFICATION CONTAINER ========== -->
+  <div class="toast-container" id="toastContainer" aria-live="assertive" aria-atomic="true" role="status"></div>
+
+  <!-- ========== BACK TO TOP BUTTON ========== -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top" style="display:none;">↑</button>
+
+  <!-- Main JS -->
+  <script src="main.js"></script>
+</body>
+</html>
